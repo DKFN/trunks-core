@@ -2,6 +2,13 @@
 module.exports = {
     webpack: function(config, env) {
         if (env === "production") {
+            config.optimization.runtimeChunk = false;
+            config.optimization.splitChunks = {
+                cacheGroups: {
+                    default: false
+                }
+            }
+
             // Overrides from https://github.com/facebook/create-react-app/issues/3855#issuecomment-406653733
             //JS Overrides
             config.output.filename = 'static/js/[name].js';
