@@ -1,6 +1,6 @@
 describe("Button renders", () => {
     it('Renders with default and minimal params', () => {
-        cy.visit("http://localhost:3000")
+        cy.visit('')
         const TRUNKS = cy.window().then((w) => {
             const TRUNKS = w.TRUNKS
 
@@ -22,7 +22,7 @@ describe("Button renders", () => {
     })
 
     it('Renders with absolute params and color and some text', () => {
-        cy.visit("http://localhost:3000")
+        cy.visit('')
         const TRUNKS = cy.window().then((w) => {
             const TRUNKS = w.TRUNKS
 
@@ -51,7 +51,7 @@ describe("Button renders", () => {
     })
 
     it('Updates a simple button', () => {
-        cy.visit("http://localhost:3000")
+        cy.visit('')
         const TRUNKS = cy.window().then((w) => {
             const TRUNKS = w.TRUNKS
 

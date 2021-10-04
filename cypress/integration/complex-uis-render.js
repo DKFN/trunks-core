@@ -1,6 +1,6 @@
 describe("Complex ui renders", () => {
     it('Renders with default and minimal params', () => {
-        cy.visit("http://localhost:3000")
+        cy.visit('')
         const TRUNKS = cy.window().then((w) => {
             const TRUNKS = w.TRUNKS
 

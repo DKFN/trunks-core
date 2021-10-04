@@ -1,6 +1,6 @@
-import store, {AppDispatch} from "./redux/store";
-import {Logger} from "./Logger";
-import { addComponent, updateComponent } from "./Components/Renderer/rendererReducer";
+import store, {AppDispatch} from "../redux/store";
+import {Logger} from "../Logger";
+import { addComponent, updateComponent } from "../Components/Renderer/rendererReducer";
 
 declare global {
     interface Window {

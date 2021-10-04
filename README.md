@@ -29,9 +29,10 @@ This package is not enough on its own, the resulting build of trunks core aims t
 - [ ] onEnter
 
 ## TrunksIO
-- [ ] AddComponent
-- [ ] EditComponent
-- [ ] DestroyComponent
+- [X] AddComponent
+- [X] EditComponent
+- [X] DestroyComponent
+- [X] sendEvent
 
 # Interacting with Trunks
 Here is a simple schematics of how Trunks work until the final rendering
