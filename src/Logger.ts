@@ -11,9 +11,10 @@ class _Logger {
 
     error(message: string, additionnal?: object){
         console.error(this.formatMessage(message), JSON.stringify(additionnal));
-        // const err = new Error();
-        // const stackTrace = err.stack;
-        // TODO: CallJS Hook
+        const err = new Error();
+        const stackTrace = err.stack;
+
+        window.TRUNKS.sendEvent("error", JSON.stringify({message, additionnal, stackTrace}))
     }
 
 }
