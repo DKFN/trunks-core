@@ -1,6 +1,6 @@
 import store, {AppDispatch} from "./redux/store";
 import {Logger} from "./Logger";
-import { addComponent } from "./Components/Renderer/rendererReducer";
+import { addComponent, updateComponent } from "./Components/Renderer/rendererReducer";
 
 declare global {
     interface Window {
@@ -72,6 +72,8 @@ class TrunksIO {
             Logger.error("A component was passed to IOHook but is missing an id", {payload})
             return;
         }
+
+        this.dispatch(updateComponent(payload));
     }
 
     private parseJSON(payload: string) {
