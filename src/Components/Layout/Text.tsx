@@ -1,6 +1,6 @@
 import React from "react";
-import {makePositionParams} from "./componentHelpers";
-import {IComponentBaseProps} from "./compontentProps";
+import {makePositionParams} from "../componentHelpers";
+import {IComponentBaseProps} from "../compontentProps";
 import classNames from "classnames";
 
 interface ITextProps extends IComponentBaseProps {
@@ -14,7 +14,7 @@ interface ITextProps extends IComponentBaseProps {
 
 export const Text = (props: ITextProps) => {
     const generatedStyle = {
-        ...makePositionParams(props.positioning)
+        ...makePositionParams(props.position)
     };
 
     const size = 'is-'+props.styling.size;
@@ -24,7 +24,7 @@ export const Text = (props: ITextProps) => {
         [size]: props.styling.size
     })
 
-    return <div className={classes} style={generatedStyle}>
+    return <div className={classes} id={props.id.toString()} style={generatedStyle}>
         {props.text}
     </div>
 }

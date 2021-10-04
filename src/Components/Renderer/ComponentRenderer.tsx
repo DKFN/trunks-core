@@ -1,36 +1,106 @@
 import React from "react"
 import {useSelector} from "react-redux";
+import {Button} from "../Inputs/Button";
+import {Box} from "../Layout/Box";
+import {Text} from "../Layout/Text"
+import {Input} from "../Inputs/Input";
+import {IAppState} from "../../redux/store";
+import {ComponentRouter} from "./ComponentRouter";
 
-export const CompontentRenderer = () => {
-    //const components = useSelector((state) => state);
+export const ComponentRenderer = () => {
+    const rendererState = useSelector((state) => (state as IAppState).renderer);
 
     // TODO: Create switch
 
-    return <div className={"content"}>
-        <div className="card">
-        <div className="card-image">
-                <img src="https://bulma.io/images/placeholders/1280x960.png" alt="Placeholder image"/>
-        </div>
-        <div className="card-content">
-            <div className="media">
-                <div className="media-left">
+    const builtComponents = Object.values(rendererState.components).map((componentProps: any) => {
+        return <ComponentRouter {...componentProps}/>
+    });
+    console.log("Renderer state: ", rendererState);
+    return <>
+        {builtComponents}
+        </>
 
-                </div>
-                <div className="media-content">
-                    <p className="title is-4">John Smith</p>
-                    <p className="subtitle is-6">@johnsmith</p>
-                </div>
-            </div>
+    /*return <>
+        <Box id={"testBox"} position={{
+            positionType: 'absolute',
+            posX: 40,
+            posY: 40,
+            width: 400,
+            height: 400
+        }}/>
+        <Button id={"test"} text={"testComponent"}
+            styling={{
+                isSuccess: true
+            }}
+            position={{
+                positionType: 'absolute',
+                posX: 280,
+                posY: 350
+            }}
+            />
+        <Text
+            id={"testText"}
+            text={"What is your name ?"}
+            position={{
+                positionType: 'absolute',
+                posX: 60,
+                posY: 60
+            }}
+            styling={{
+                isSubtitle: true,
+                size: 5
+            }}
+        />
+        <Input
+            id={"testInput"}
+            text={"John"}
+            position={{
+                positionType: 'absolute',
+                posX: 60,
+                posY: 90
+            }}
+            styling={{}}
+        />
 
-            <div className="content">
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                Phasellus nec iaculis mauris. <a>@bulmaio</a>.
-                <a href="#">#css</a> <a href="#">#responsive</a>
-                <br />
-                    <time dateTime="2016-1-1">11:09 PM - 1 Jan 2016</time>
-            </div>
-        </div>
-    </div>
-    </div>;
+        <Text
+            id={"testText"}
+            text={"What is your last name ?"}
+            position={{
+                positionType: 'absolute',
+                posX: 60,
+                posY: 160
+            }}
+            styling={{
+                isSubtitle: true,
+                size: 5
+            }}
+        />
+
+        <Input
+            id={"testInput"}
+            text={"Doe"}
+            position={{
+                positionType: 'absolute',
+                posX: 60,
+                posY: 190
+            }}
+            styling={{
+                isRounded: true,
+                isSuccess: true
+            }}
+        />
+
+        <Text
+            id={"testText"}
+            text={"MySuperRPCorp version 1.0.0"}
+            position={{
+                positionType: 'absolute',
+                posX: 130,
+                posY: 410
+            }}
+            styling={{
+            }}
+        />
+        </>; */
 
 }
