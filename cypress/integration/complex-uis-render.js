@@ -105,7 +105,7 @@ describe("Complex ui renders", () => {
                 position: {
                     positionType: "absolute",
                     posX: 50,
-                    posY: 250
+                    posY: 200
                 }
             }
 
@@ -127,8 +127,6 @@ describe("Complex ui renders", () => {
             genBtn.should("have.class", "button")
             const genBtn2 = cy.get("#Cypress2")
             genBtn2.should("have.class", "button")
-
-
         })
     })
 });

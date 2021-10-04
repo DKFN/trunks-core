@@ -42,11 +42,43 @@ describe("Button renders", () => {
             }
 
             TRUNKS.addComponent(JSON.stringify(firstButton))
-            cy.wait(100)
             const genBtn = cy.get("#Cypress1")
             genBtn.should("have.class", "button")
             genBtn.should("have.class", "is-success")
             genBtn.should("have.css", 'top')
+        })
+    })
+
+    it('Button click triggers event with correct params', () => {
+        cy.visit('')
+        const TRUNKS = cy.window().then((w) => {
+            const TRUNKS = w.TRUNKS
+
+            const firstButton = {
+                id: "Cypress1",
+                component: "Button",
+                text: "This is a test button !",
+                name: "mytestbtn",
+                position: {
+                    positionType: "absolute",
+                    posX: 45,
+                    posY: 45
+                },
+                styling: {
+                    color: 'success'
+                }
+            }
+
+            TRUNKS.addComponent(JSON.stringify(firstButton))
+            const spiedEvents = cy.spy(w.TRUNKS, 'sendEvent')
+            const genBtn = cy.get("#Cypress1")
+            genBtn.should("have.class", "button")
+            genBtn.should("have.class", "is-success")
+            genBtn.should("have.css", 'top')
+            cy.get("#Cypress1").click({force: true}).then(() => {
+                expect(spiedEvents).to.be
+                    .calledWith("onClick", {id: "Cypress1", name: "mytestbtn", value: undefined})
+            })
         })
     })
 
@@ -83,7 +115,6 @@ describe("Button renders", () => {
             }
 
             TRUNKS.addComponent(JSON.stringify(firstButton))
-            cy.wait(100)
             const genBtn = cy.get("#Cypress1")
             genBtn.should("have.class", "button")
             genBtn.should("have.class", "is-success")

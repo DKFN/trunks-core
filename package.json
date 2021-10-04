@@ -26,7 +26,7 @@
     "start": "react-app-rewired start",
     "build": "react-app-rewired build",
     "uitest": "cypress open",
-    "test": "react-app-rewired test",
+    "test": "cypress run",
     "eject": "react-app-rewired eject",
     "lint": "eslint src/** --fix"
   },
@@ -55,6 +55,7 @@
     "@typescript-eslint/parser": "^4.32.0",
     "cra-build-watch": "^3.4.0",
     "cypress": "^8.5.0",
+    "cypress-plugin-snapshots": "^1.4.4",
     "eslint": "^7.32.0",
     "eslint-plugin-react": "^7.26.1",
     "react-app-rewired": "^2.1.8",
