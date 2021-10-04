@@ -37,7 +37,7 @@ describe("Button renders", () => {
                     posY: 45
                 },
                 styling: {
-                    isSuccess: true
+                    color: 'success'
                 }
             }
 
@@ -66,7 +66,7 @@ describe("Button renders", () => {
                     posY: 45
                 },
                 styling: {
-                    isSuccess: true
+                    color: 'success'
                 }
             }
 

@@ -2,6 +2,7 @@ import {IComponentInputStyleProps} from "./compontentInputProps";
 import classNames from "classnames";
 
 export const makeInputClassNames = (styling: IComponentInputStyleProps = {}) => {
+    const maybeColor = "is-" + styling?.color ;
     return classNames({
         // Component styling
         'is-loading': styling?.isLoading,
@@ -14,15 +15,7 @@ export const makeInputClassNames = (styling: IComponentInputStyleProps = {}) => 
         'is-large': styling?.isLarge,
         'is-fullwidth': styling?.isFullWidth,
 
-        // Colors TODO: Refactor too much booleans lmao
-        'is-white': styling?.isWhite,
-        'is-light': styling?.isLight,
-        'is-dark': styling?.isDark,
-        'is-black': styling?.isBlack,
-        'is-primary': styling?.isPrimary,
-        'is-success': styling?.isSuccess,
-        'is-warning': styling?.isWarning,
-        'is-danger': styling?.isDanger
+        [maybeColor]: styling?.color
     });
 }
 

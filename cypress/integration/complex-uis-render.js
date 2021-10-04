@@ -26,7 +26,7 @@ describe("Complex ui renders", () => {
                     posY: 350
                 },
                 styling: {
-                    isSuccess: true
+                    color: 'success'
                 }
             }
 
@@ -40,7 +40,7 @@ describe("Complex ui renders", () => {
                     posY: 350
                 },
                 styling: {
-                    isError: true
+                    color: 'error'
                 }
             }
 

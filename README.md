@@ -27,6 +27,11 @@ If your goal is to write an adapter for anything not supported yet, follow this 
 - [X] Absolute position
 - [ ] Bulma Responsive
 
+## Styling
+- [X] Bulma colors
+- [ ] RGB colors
+
+
 ## Events
 - [X] onClick
 - [X] onChange
