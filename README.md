@@ -55,12 +55,14 @@ Launch `npm run uitests`, you will then have a lot of cypress scenarios you can 
 # Interacting with Trunks
 Here is a simple schematics of how Trunks work until the final rendering
 
-Some code: represents user code written in Lua
-TrunksLua: represents a client that will interface the user code and translate it in the JSON component syntax for Trunks to render
-Trunks: Trunks core, this repository
+- Some code: represents user code written in Lua
+- TrunksLua: represents a client that will interface the user code and translate it in the JSON component syntax for Trunks to render
+- Trunks: Trunks core, this repository
 
-[Insert schematic here]
+[![basic_arch](https://raw.githubusercontent.com/DKFN/trunks-core/main/docs/images/interaction_basic.png.png)]
 
+
+Events on go on the opposite direction, they will be sent from TrunksIO to TrunksLua and then sent to SomeCode
 ## Getting TrunksIO and interacting
 To communicate with Trunks you need to first find it, we export a `TRUNKS` or `window.TRUNKS` global for interacting with Trunks.
 
@@ -68,6 +70,10 @@ You can either call it from JS or from your language of choice if you can send J
 
 ### Adding a componenent
 To add a component you must use function `TRUNKS.addComponent`, it takes only one parameter with the Component JSON.
+
+Please note that the only actual mandatory field is the `id`. But be carefull, if you do not provide a `component` value, an error might show until you specify it!
+You can always specify all orther fields during execution with the update method.
+
 For example:
 ```javascript
 const firstButton = 
@@ -89,6 +95,36 @@ Note that the Id is already specified, the id must always be specified before ad
 
 Will render a simple button on the top left of the screen:
 [Insert button image here]
+
+### Updating a component
+To update a component, the only mandatory field is the id.
+
+Every orther field will be merged with the orther fields of the component, this allows simple and atomic updates to fit your API.
+
+For example to update the text displayed on the button:
+```javascript
+const updatePatch = {
+    id: "Cypress1",
+    text: "This is my new text !"
+}
+
+
+TRUNKS.updateComponent(JSON.stringify(updatePatch));
+```
+
+Or to change its position:
+```javascript
+const updatePatch2 = {
+    id: "Cypress1",
+    position: {
+        posX: 90
+    }
+}
+
+TRUNKS.updateComponent(JSON.stringify(updatePatch2));
+```
+
+As you can see, you don't need to provide all the values while updating the UI.
 
 ### Catching component events
 In order to catch all component events you need to subscribe a function hook, this hook is the function that will always be called
