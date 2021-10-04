@@ -1,5 +1,6 @@
 describe("Complex ui renders", () => {
-    it('Renders with default and minimal params', () => {
+
+    beforeEach(() => {
         cy.visit('')
         const TRUNKS = cy.window().then((w) => {
             const TRUNKS = w.TRUNKS
@@ -20,6 +21,7 @@ describe("Complex ui renders", () => {
                 id: "Cypress1",
                 component: "Button",
                 text: "Save",
+                name: "savebtn",
                 position: {
                     positionType: "absolute",
                     posX: 700,
@@ -58,6 +60,7 @@ describe("Complex ui renders", () => {
             const textOne = {
                 id: "Text1",
                 component: "Input",
+                name: "firstname",
                 text: "John",
                 position: {
                     positionType: "absolute",
@@ -81,6 +84,7 @@ describe("Complex ui renders", () => {
                 id: "Text2",
                 component: "Input",
                 text: "Doe",
+                name: "lastname",
                 position: {
                     positionType: "absolute",
                     posX: 50,
@@ -102,10 +106,11 @@ describe("Complex ui renders", () => {
             const textThree = {
                 id: "Text3",
                 component: "Input",
+                name: "age",
                 position: {
                     positionType: "absolute",
                     posX: 50,
-                    posY: 200
+                    posY: 250
                 }
             }
 
@@ -128,5 +133,33 @@ describe("Complex ui renders", () => {
             const genBtn2 = cy.get("#Cypress2")
             genBtn2.should("have.class", "button")
         })
+    })
+
+    it('Types into all inputs and then calls the events respectively', () => {
+        cy.window().then((w) => {
+            const spiedEvents = cy.spy(w.TRUNKS, 'sendEvent')
+
+            const firstName = "Mario";
+            const lastName = "StarEater";
+            const age = "32";
+
+            cy.get("#Text1").type(firstName).then(() => {
+                expect(spiedEvents).to.be
+                    .calledWith("onChange", {id: "Text1", name: "firstname", value: firstName})
+            })
+            cy.get("#Text2").type(lastName).then(() => {
+                expect(spiedEvents).to.be
+                    .calledWith("onChange", {id: "Text2", name: "lastname", value: lastName})
+            })
+            cy.get("#Text3").type(age).then(() => {
+                expect(spiedEvents).to.be
+                    .calledWith("onChange", {id: "Text3", name: "age", value: age})
+            })
+
+            cy.get("#Cypress1").click({force: true}).then(() => {
+                expect(spiedEvents).to.be
+                    .calledWith("onClick", {id: "Cypress1", name: "savebtn", value: undefined})
+            })
+        });
     })
 });
