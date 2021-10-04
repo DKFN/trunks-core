@@ -43,6 +43,15 @@ If your goal is to write an adapter for anything not supported yet, follow this 
 - [X] DestroyComponent
 - [X] sendEvent
 
+# Developping on the core
+### Installation
+Install all npm packages with `npm install` and run the UI with `npm run start`.
+
+When you run the Application you will only have a blank page. This is normal.
+You can either access the hook via the Dev Tools console to populate a UI but we recommend you use the UI Test.
+
+Launch `npm run uitests`, you will then have a lot of cypress scenarios you can add your own tests.
+
 # Interacting with Trunks
 Here is a simple schematics of how Trunks work until the final rendering
 
