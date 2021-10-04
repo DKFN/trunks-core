@@ -17,7 +17,7 @@ If your goal is to write an adapter for anything not supported yet, follow this 
 - [X] Box
 - [ ] CheckBoxes
 - [ ] Radio
-- [ ] ProgressBar
+- [X] ProgressBar
 - [ ] Notification
 - [ ] ColorPicker
 - [ ] Image

@@ -23,6 +23,7 @@ export const ProgressBar = (props: IProgressBarProps) => {
     const onClick = () => sendEvent("onClick", props.id, props.name);
 
     return <progress
+        id={props.id.toString()}
         className={classNames(classes, "progress")}
         style={generatedStyle}
         onClick={onClick}
