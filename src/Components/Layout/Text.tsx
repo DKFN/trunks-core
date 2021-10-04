@@ -1,5 +1,5 @@
 import React from "react";
-import {makePositionParams} from "../componentHelpers";
+import {makePositionParams, sendEvent} from "../componentHelpers";
 import {IComponentBaseProps} from "../compontentProps";
 import classNames from "classnames";
 
@@ -24,7 +24,9 @@ export const Text = (props: ITextProps) => {
         [size]: props.styling?.size
     })
 
-    return <div className={classes} id={props.id.toString()} style={generatedStyle}>
+    const onClick = () => sendEvent("onClick", props.id, props.name);
+
+    return <div className={classes} onClick={onClick} id={props.id.toString()} style={generatedStyle}>
         {props.text}
     </div>
 }
