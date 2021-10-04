@@ -1,47 +1,99 @@
-# Getting Started with Create React App
+# Trunks-core
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Trunks-core is the view part of trunks, its goal is only to add/modify or destroy components according to the JSON Component Declaration it receives.
+It also exposes a global object wich is used to receive components specifications and also send the events to the client application.
 
-## Available Scripts
+This package is not enough on its own, the resulting build of trunks core aims to be packaged on the clients that will use the rendering API.
 
-In the project directory, you can run:
+# Roadmap
+## Components
+- [X] Input
+- [X] Text
+- [X] Button
+- [X] Box
+- [ ] CheckBoxes
+- [ ] Radio
+- [ ] ProgressBar
+- [ ] Notification
+- [ ] ColorPicker
+- [ ] Image
+- [ ] Tabs
 
-### `npm start`
+## Positionning
+- [X] Absolute position
+- [ ] Bulma Responsive
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+## Events
+- [X] onClick
+- [X] onChange
+- [ ] onEnter
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+## TrunksIO
+- [ ] AddComponent
+- [ ] EditComponent
+- [ ] DestroyComponent
 
-### `npm test`
+# Interacting with Trunks
+Here is a simple schematics of how Trunks work until the final rendering
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+Some code: represents user code written in Lua
+TrunksLua: represents a client that will interface the user code and translate it in the JSON component syntax for Trunks to render
+Trunks: Trunks core, this repository
 
-### `npm run build`
+[Insert schematic here]
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## Getting TrunksIO and interacting
+To communicate with Trunks you need to first find it, we export a `TRUNKS` or `window.TRUNKS` global for interacting with Trunks.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+You can either call it from JS or from your language of choice if you can send JS commands to the WebUI currently running Trunks.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+### Adding a componenent
+To add a component you must use function `TRUNKS.addComponent`, it takes only one parameter with the Component JSON.
+For example:
+```javascript
+const firstButton = 
+    {
+        id: "Cypress1",
+        component: "Button",
+        text: "Hello world !",
+        position: {
+            positionType: "absolute",
+            posX: 0,
+            posY: 0
+        }
+    };
 
-### `npm run eject`
+    TRUNKS.addComponent(JSON.stringify(firstButton))
+```
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+Note that the Id is already specified, the id must always be specified before adding the component it is your responsability to set the component id.
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+Will render a simple button on the top left of the screen:
+[Insert button image here]
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+### Catching component events
+In order to catch all component events you need to subscribe a function hook, this hook is the function that will always be called
+when a even happends on an element (onClick, onEnter, etc etc).
+```javascript
+TRUNKS.setEventHook((event) => {
+    console.log(event);
+});
+```
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+After clicking the button created in the previous chapter it will call the hook with:
+```json
+{
+  "eventType": "onClick",
+  "eventPayload": {
+    "id": "Cypress1"
+  }
+}
+```
 
-## Learn More
+It will always return an id and may return the name if user has specified it alongisde the value if the component has one for this event.
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+The next step for you is to accuratly redirect the event to the corresponding component and update its representation.
 
-To learn React, check out the [React documentation](https://reactjs.org/).
-"# trunks-core" 
+# Component declaration syntax
+
+# Events handling

@@ -12,3 +12,11 @@ export const makePositionParams = (positionProps: IComponentBasePositioningProps
         }
     Logger.error("Not implemented position type : " + positionProps.positionType, {positionProps});
 }
+
+export const sendEvent = (eventType: string, id: string | number, name?: string, value?: string) => {
+    window.TRUNKS.sendEvent(eventType, {
+        id: id,
+        name: name,
+        value: value
+    })
+}

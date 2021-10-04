@@ -1,16 +1,16 @@
 import React from "react";
-import {makePositionParams} from "../componentHelpers";
+import {makePositionParams, sendEvent} from "../componentHelpers";
 import {IComponentBaseProps} from "../compontentProps";
 
-type IButtonProps = IComponentBaseProps;
-
-export const Box = (props: IButtonProps) => {
+export const Box = (props: IComponentBaseProps) => {
 
 
     const generatedStyle = {
         ...makePositionParams(props.position)
     };
 
-    return <div className="box" id={props.id.toString()} style={generatedStyle}>
+    const onClick = () => sendEvent("onClick", props.id, props.name);
+
+    return <div className="box" onClick={onClick} id={props.id.toString()} style={generatedStyle}>
     </div>;
 }

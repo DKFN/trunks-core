@@ -17,11 +17,11 @@ export const Text = (props: ITextProps) => {
         ...makePositionParams(props.position)
     };
 
-    const size = 'is-'+props.styling.size;
+    const size = 'is-'+props.styling?.size;
     const classes = classNames({
-        'title': props.styling.isTitle,
-        'subtitle': props.styling.isSubtitle,
-        [size]: props.styling.size
+        'title': props.styling?.isTitle,
+        'subtitle': props.styling?.isSubtitle,
+        [size]: props.styling?.size
     })
 
     return <div className={classes} id={props.id.toString()} style={generatedStyle}>
