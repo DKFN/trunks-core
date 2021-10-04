@@ -5,6 +5,10 @@ It also exposes a global object wich is used to receive components specification
 
 This package is not enough on its own, the resulting build of trunks core aims to be packaged on the clients that will use the rendering API.
 
+If your goal is to write GUI using Trunks, refer to your clientside package documentation.
+
+If your goal is to write an adapter for anything not supported yet, follow this documentation.
+
 # Roadmap
 ## Components
 - [X] Input
