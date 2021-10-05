@@ -22,6 +22,8 @@ If your goal is to write an adapter for anything not supported yet, follow this 
 - [ ] ColorPicker
 - [ ] Image
 - [ ] Tabs
+- [ ] Custom Stylesheet
+- [ ] Custom JS
 
 ## Positionning
 - [X] Absolute position

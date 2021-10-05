@@ -2,7 +2,7 @@ export interface IComponentBaseProps {
     id: string | number;
     component: string; // Component type
     name?: string;
-    position: IComponentBasePositioningProps;
+    position?: IComponentBasePositioningProps;
 }
 
 export interface IComponentBasePositioningProps {

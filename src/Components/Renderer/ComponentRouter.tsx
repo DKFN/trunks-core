@@ -6,8 +6,11 @@ import {IInputProps, Input} from "../Inputs/Input";
 import {IProgressBarProps, ProgressBar} from "../Inputs/ProgressBar";
 import {TrunksError} from "../TrunksError";
 import {Text} from "../Layout/Text";
+import {Javascript} from "../Scripts/Javascript";
+import {IScriptProps} from "../Scripts/scriptProps";
+import {Stylesheet} from "../Scripts/Stylesheet";
 
-export const ComponentRouter = (props: IComponentBaseProps) => {
+const ComponentRouter = (props: IComponentBaseProps) => {
     const type = props.component;
 
     switch (type) {
@@ -21,6 +24,12 @@ export const ComponentRouter = (props: IComponentBaseProps) => {
             return <ProgressBar {...props as IProgressBarProps} />
         case "Text":
             return <Text {...props as any} />
+        case "Javascript":
+            return <Javascript {...props as IScriptProps}/>
+        case "Stylesheet":
+            return <Stylesheet {...props as IScriptProps}/>
     }
     return <TrunksError message={"Component "+ type + " does not exist"} entity={props} />;
 }
+
+export default React.memo(ComponentRouter)

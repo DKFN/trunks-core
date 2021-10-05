@@ -1,7 +1,15 @@
 import {IComponentBasePositioningProps} from "./compontentProps";
 import {Logger} from "../Logger";
 
-export const makePositionParams = (positionProps: IComponentBasePositioningProps): any => {
+const defaultPosition = {
+    position: "absolute",
+    top: 0,
+    left: 0
+}
+
+export const makePositionParams = (positionProps: IComponentBasePositioningProps | undefined): any => {
+    if (!positionProps) return defaultPosition;
+
     if (positionProps.positionType === "absolute")
         return {
             position: positionProps.positionType,

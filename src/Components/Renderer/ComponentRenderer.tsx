@@ -1,7 +1,7 @@
 import React from "react"
 import {useSelector} from "react-redux";
 import {IAppState} from "../../redux/store";
-import {ComponentRouter} from "./ComponentRouter";
+import ComponentRouter from "./ComponentRouter";
 
 export const ComponentRenderer = () => {
     const rendererState = useSelector((state) => (state as IAppState).renderer);

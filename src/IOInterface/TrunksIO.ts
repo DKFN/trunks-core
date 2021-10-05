@@ -50,10 +50,11 @@ class TrunksIO {
             return;
         }
 
-        if  (!componentPayload.position) {
+        // Not mandatory for Custom Stylesheet and Custom JS
+        /*if  (!componentPayload.position) {
             Logger.error("A component was passed to IOHook but is missing position attributes", {payload})
             return;
-        }
+        }*/
 
         this.dispatch(addComponent(payload));
     }
