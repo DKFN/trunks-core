@@ -36,14 +36,20 @@ class TrunksIO {
         this.events = [];
     }
 
+    // Note to self: passing Logger.error in event loop is a great receipe for OOM !
     public sendEvent(eventType: string, eventPayload: any) {
-        if (!this.eventHook) this.events.push({eventType, eventPayload})
+        if (!this.eventHook) {
+            this.events.push({eventType, eventPayload})
+            Logger.debug("No hook found, cannot send event")
+        }
         else {
+            Logger.debug("Sending event ... " + JSON.stringify({eventType, eventPayload}));
             this.eventHook(JSON.stringify({eventType, eventPayload}));
         }
     }
 
     public addComponent(payload: string) {
+        Logger.debug(payload)
         const componentPayload = this.parseJSON(payload)
         if (!componentPayload.id) {
             Logger.error("A component was passed to IOHook but is missing an id", {payload})

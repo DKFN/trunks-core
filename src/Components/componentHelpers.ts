@@ -22,6 +22,7 @@ export const makePositionParams = (positionProps: IComponentBasePositioningProps
 }
 
 export const sendEvent = (eventType: string, id: string | number, name?: string, value?: string) => {
+    Logger.debug("Found event ... " + eventType)
     window.TRUNKS.sendEvent(eventType, {
         id: id,
         name: name,

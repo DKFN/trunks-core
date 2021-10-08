@@ -5,6 +5,7 @@ export interface IComponentInputStyleProps extends IComponentStylingBaseProps {
     isRounded?: boolean;
     isLoading?: boolean;
 
+    // TODO: Refactor like color
     isSmall?: boolean;
     isMedium?: boolean;
     isLarge?: boolean;

@@ -5,7 +5,7 @@ class _Logger {
     }
 
     debug(message: string, additionnal?: object){
-        console.debug(this.formatMessage(message), JSON.stringify(additionnal));
+        console.log(this.formatMessage(message), JSON.stringify(additionnal));
         // TODO: CallJS Hook
     }
 

@@ -6,9 +6,9 @@ import "./IOInterface/TrunksIO"
 
 function App() {
   return (
-      <div>
+      <>
             <ComponentRenderer />
-      </div>
+      </>
   );
 }
 
