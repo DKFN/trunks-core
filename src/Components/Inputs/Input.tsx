@@ -20,9 +20,20 @@ export const Input = (props: IInputProps) => {
 
     /* Event Routing */
     const onClick = () => sendEvent("onClick", props.id, props.name);
+    const onFocus = () => sendEvent("onFocus", props.id, props.name);
     const onChange = (e: any) => {
         const value = e.target.value;
         sendEvent("onChange", props.id, props.name, value);
+    }
+    const onKeyDown = (e: any) => {
+        const proxySendEvent = (eventName: string) => sendEvent(eventName, props.id, props.name);
+        const value = e.key
+        switch (value) {
+            case "Enter":
+                proxySendEvent("onEnter"); break;
+            case "Escape":
+                proxySendEvent("onEscape"); break;
+        }
     }
 
     /* Render */
@@ -34,6 +45,8 @@ export const Input = (props: IInputProps) => {
             placeholder={props.text || ''}
             onChange={onChange}
             onClick={onClick}
+            onKeyDown={onKeyDown}
+            onFocus={onFocus}
         />
     </div>;
 }

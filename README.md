@@ -18,12 +18,14 @@ If your goal is to write an adapter for anything not supported yet, follow this 
 - [ ] CheckBoxes
 - [ ] Radio
 - [X] ProgressBar
+- [ ] FontAwesome4 Icons
 - [ ] Notification
 - [ ] ColorPicker
-- [ ] Image
+- [X] Image (via url if crosspackage work or base64)
 - [ ] Tabs
-- [ ] Custom Stylesheet
-- [ ] Custom JS
+- [ ] Custom Stylesheet (string and like image)
+- [ ] Custom JS (string and like image)
+- [ ] Custom fonts (like image)
 
 ## Positionning
 - [X] Absolute position

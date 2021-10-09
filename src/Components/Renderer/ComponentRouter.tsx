@@ -9,6 +9,7 @@ import {Text} from "../Layout/Text";
 import {Javascript} from "../Scripts/Javascript";
 import {IScriptProps} from "../Scripts/scriptProps";
 import {Stylesheet} from "../Scripts/Stylesheet";
+import {Icon} from "../Layout/Icon";
 
 const ComponentRouter = (props: IComponentBaseProps) => {
     const type = props.component;
@@ -24,6 +25,8 @@ const ComponentRouter = (props: IComponentBaseProps) => {
             return <ProgressBar {...props as IProgressBarProps} />
         case "Text":
             return <Text {...props as any} />
+        case "Icon":
+            return <Icon {...props as any} />
         case "Javascript":
             return <Javascript {...props as IScriptProps}/>
         case "Stylesheet":

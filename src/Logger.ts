@@ -1,4 +1,3 @@
-
 class _Logger {
     private formatMessage(message: string) {
         return "Trunks-core : " + message + "\n"

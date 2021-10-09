@@ -27,12 +27,14 @@ export const Button = (props: IButtonProps) => {
 
     /** Event Routing */
     const onClick = () => sendEvent("onClick", props.id, props.name);
+    const onMouseEnter = () => sendEvent("onMouseEnter", props.id, props.name);
 
     return <button
         id={props.id.toString()}
         className={classNames("button", classes)}
         style={generatedStyle}
         onClick={onClick}
+        onMouseEnter={onMouseEnter}
     >{text}
     </button>;
 }

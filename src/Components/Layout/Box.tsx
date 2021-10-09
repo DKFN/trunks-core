@@ -3,8 +3,6 @@ import {makePositionParams, sendEvent} from "../componentHelpers";
 import {IComponentBaseProps} from "../compontentProps";
 
 export const Box = (props: IComponentBaseProps) => {
-
-
     const generatedStyle = {
         ...makePositionParams(props.position)
     };

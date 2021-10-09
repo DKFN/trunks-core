@@ -2,7 +2,7 @@ describe("Complex ui renders", () => {
 
     beforeEach(() => {
         cy.visit('')
-        const TRUNKS = cy.window().then((w) => {
+        cy.window().then((w) => {
             const TRUNKS = w.TRUNKS
 
             const firstBox = {
