@@ -23,7 +23,6 @@ class _Logger {
 
         window.TRUNKS.sendEvent("error", JSON.stringify({message, additionnal, stackTrace}))
     }
-
 }
 
 export const Logger = new _Logger();
