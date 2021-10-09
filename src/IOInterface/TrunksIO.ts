@@ -19,6 +19,7 @@ interface TrunksIOEvent {
 class TrunksIO {
     public version = "0.0.1"
     public events: TrunksIOEvent[] = []; // Waiting to be transferred events
+    public debugMode: boolean = false;
     private dispatch: AppDispatch;
     private eventHook: any = undefined; // Hook used to transmit events to the UI
 
@@ -55,12 +56,6 @@ class TrunksIO {
             Logger.error("A component was passed to IOHook but is missing an id", {payload})
             return;
         }
-
-        // Not mandatory for Custom Stylesheet and Custom JS
-        /*if  (!componentPayload.position) {
-            Logger.error("A component was passed to IOHook but is missing position attributes", {payload})
-            return;
-        }*/
 
         this.dispatch(addComponent(payload));
     }

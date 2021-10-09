@@ -3,12 +3,20 @@ class _Logger {
         return "Trunks-core : " + message + "\n"
     }
 
-    debug(message: string, additionnal?: object){
-        console.log(this.formatMessage(message), JSON.stringify(additionnal));
-        // TODO: CallJS Hook
+    public debug(message: string, additionnal?: object){
+        if (window.TRUNKS.debugMode)
+            console.log(this.formatMessage(message), JSON.stringify(additionnal));
     }
 
-    error(message: string, additionnal?: object){
+    public log(message: string, additionnal?: object) {
+        console.log(this.formatMessage(message), JSON.stringify(additionnal));
+    }
+
+    public warn(message: string, additionnal?: object) {
+        console.warn(this.formatMessage(message), JSON.stringify(additionnal));
+    }
+
+    public error(message: string, additionnal?: object){
         console.error(this.formatMessage(message), JSON.stringify(additionnal));
         const err = new Error();
         const stackTrace = err.stack;
