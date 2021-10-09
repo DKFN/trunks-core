@@ -24,7 +24,7 @@ export const Checkbox = (props: ICheckboxProps) => {
         sendEvent("onChange", props.id, props.name, checked);
     };
 
-
+    /** Render */
     return <label className="checkbox" style={generatedStyle}>
         <input
             type="checkbox"

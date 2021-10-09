@@ -12,6 +12,7 @@ interface IIConProps extends IComponentBaseProps {
 export const Icon = (props: IIConProps) => {
     if (!props.icon) return null;
 
+    /** Style */
     const generatedStyle = {
         ...makePositionParams(props.position)
     };
@@ -25,6 +26,7 @@ export const Icon = (props: IIConProps) => {
     const onClick = () => sendEvent("onClick", props.id, props.name);
     const onMouseEnter = () => sendEvent("onMouseEnter", props.id, props.name);
 
+    /** Render */
     return <span className="icon" id={props.id.toString()} style={additionnalStyle} onClick={onClick} onMouseEnter={onMouseEnter}>
         <i className={classNames("fa", props.icon)}></i>
     </span>

@@ -12,6 +12,9 @@ interface ITextProps extends IComponentBaseProps {
 }
 
 export const Text = (props: ITextProps) => {
+    if (!props.text) return null;
+
+    /** Style */
     const generatedStyle = {
         ...makePositionParams(props.position)
     };
@@ -26,8 +29,10 @@ export const Text = (props: ITextProps) => {
         'subtitle': props.styling?.isSubtitle
     })
 
+    /** Event Routing */
     const onClick = () => sendEvent("onClick", props.id, props.name);
 
+    /** Render */
     return <div
         className={classes}
         onClick={onClick}

@@ -20,6 +20,7 @@ export const Image = (props: IImageProps) => {
     const onClick = () => sendEvent("onClick", props.id, props.name);
     const onMouseEnter = () => sendEvent("onMouseEnter", props.id, props.name);
 
+    /** Render */
     return <img
         src={props.src}
         style={generatedStyle}

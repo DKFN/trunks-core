@@ -10,7 +10,7 @@ export interface IInputProps extends IComponentInputProps {
 }
 
 export const Input = (props: IInputProps) => {
-    /* Style */
+    /** Style */
     const generatedStyle = {
         ...makePositionParams(props.position)
     };
@@ -21,7 +21,7 @@ export const Input = (props: IInputProps) => {
         props.isLoading ? "loading" : ""
     ]
 
-    /* Event Routing */
+    /** Event Routing */
     const onClick = () => sendEvent("onClick", props.id, props.name);
     const onMouseEnter = () => sendEvent("onMouseEnter", props.id, props.name);
     const onFocus = () => sendEvent("onFocus", props.id, props.name);
@@ -40,7 +40,7 @@ export const Input = (props: IInputProps) => {
         }
     }
 
-    /* Render */
+    /** Render */
     return <div className="control" style={generatedStyle}>
         <input
             id={props.id.toString()}

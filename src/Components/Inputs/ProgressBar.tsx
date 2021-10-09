@@ -12,22 +12,26 @@ export interface IProgressBarProps extends IComponentBaseProps {
 }
 
 export const ProgressBar = (props: IProgressBarProps) => {
-    /* Style */
+    /** Style */
     const generatedStyle = {
         ...makePositionParams(props.position)
     };
 
     const classes = makeInputClassNames(props.styling);
 
-    /* Event routing */
+    /** Event routing */
     const onClick = () => sendEvent("onClick", props.id, props.name);
+    const onMouseEnter = () => sendEvent("onMouseEnter", props.id, props.name);
 
+    /** Render */
     return <progress
         id={props.id.toString()}
         className={classNames(classes, "progress")}
         style={generatedStyle}
-        onClick={onClick}
         value={props.value}
-        max={props.maxValue || 100}>
+        max={props.maxValue || 100}
+
+        onClick={onClick}
+        onMouseEnter={onMouseEnter}>
     </progress>;
 }

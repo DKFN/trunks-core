@@ -39,9 +39,10 @@ export const Button = (props: IButtonProps) => {
         id={props.id.toString()}
         className={classNames("button", classes, componentClasses)}
         style={generatedStyle}
+        disabled={props.disabled || false}
+
         onClick={onClick}
         onMouseEnter={onMouseEnter}
-        disabled={props.disabled || false}
     >{text}
     </button>;
 }
