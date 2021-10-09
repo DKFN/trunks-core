@@ -1,4 +1,9 @@
-import {IComponentStylingBaseProps} from "../compontentProps";
+import {IComponentBaseProps, IComponentStylingBaseProps} from "../compontentProps";
+
+export interface IComponentInputProps extends IComponentBaseProps {
+    text?: string;
+    disabled?: boolean;
+}
 
 export interface IComponentInputStyleProps extends IComponentStylingBaseProps {
     isOutlined?: boolean;

@@ -8,7 +8,6 @@ interface ITextProps extends IComponentBaseProps {
     styling: {
         isTitle?: boolean;
         isSubtitle?: boolean;
-        size?: number;
     }
 }
 
@@ -17,16 +16,23 @@ export const Text = (props: ITextProps) => {
         ...makePositionParams(props.position)
     };
 
-    const size = 'is-'+props.styling?.size;
+    const additionnalStyle = props.position?.height ? {
+        fontSize: props.position?.height,
+        ...generatedStyle
+    } : generatedStyle;
+
     const classes = classNames({
         'title': props.styling?.isTitle,
-        'subtitle': props.styling?.isSubtitle,
-        [size]: props.styling?.size
+        'subtitle': props.styling?.isSubtitle
     })
 
     const onClick = () => sendEvent("onClick", props.id, props.name);
 
-    return <div className={classes} onClick={onClick} id={props.id.toString()} style={generatedStyle}>
+    return <div
+        className={classes}
+        onClick={onClick}
+        id={props.id.toString()}
+        style={additionnalStyle}>
         {props.text}
     </div>
 }

@@ -15,13 +15,13 @@ If your goal is to write an adapter for anything not supported yet, follow this 
 - [X] Text
 - [X] Button
 - [X] Box
-- [ ] CheckBoxes
+- [X] CheckBoxes
 - [ ] Radio
 - [X] ProgressBar
-- [ ] FontAwesome4 Icons
+- [X] FontAwesome4 Icons
 - [ ] Notification
 - [ ] ColorPicker
-- [X] Image (via url if crosspackage work or base64)
+- [\] Image (supported only via URL)
 - [ ] Tabs
 - [ ] Custom Stylesheet (string and like image)
 - [ ] Custom JS (string and like image)

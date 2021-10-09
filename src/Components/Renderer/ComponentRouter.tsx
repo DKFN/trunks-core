@@ -10,6 +10,8 @@ import {Javascript} from "../Scripts/Javascript";
 import {IScriptProps} from "../Scripts/scriptProps";
 import {Stylesheet} from "../Scripts/Stylesheet";
 import {Icon} from "../Layout/Icon";
+import {Image} from "../Layout/Image";
+import {Checkbox, ICheckboxProps} from "../Inputs/Checkbox";
 
 const ComponentRouter = (props: IComponentBaseProps) => {
     const type = props.component;
@@ -19,6 +21,8 @@ const ComponentRouter = (props: IComponentBaseProps) => {
             return <Button {...props as IButtonProps} />
         case "Box":
             return <Box {...props as IComponentBaseProps} />
+        case "Checkbox":
+            return <Checkbox {...props as ICheckboxProps} />
         case "Input":
             return <Input {...props as IInputProps} />
         case "ProgressBar":
@@ -27,6 +31,8 @@ const ComponentRouter = (props: IComponentBaseProps) => {
             return <Text {...props as any} />
         case "Icon":
             return <Icon {...props as any} />
+        case "Image":
+            return <Image {...props as any} />
         case "Javascript":
             return <Javascript {...props as IScriptProps}/>
         case "Stylesheet":
