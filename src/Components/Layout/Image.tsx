@@ -1,18 +1,23 @@
 import React from "react";
 import {IComponentBaseProps} from "../compontentProps";
 import {makePositionParams, sendEvent} from "../componentHelpers";
+import {useSelector} from "react-redux";
+import {IAppState} from "../../redux/store";
 
 interface IImageProps extends IComponentBaseProps {
     src: string;
 }
 
 export const Image = (props: IImageProps) => {
+    const maybeParentId = props.position?.parent;
+    const parentComponent: any = useSelector((state) => maybeParentId && (state as IAppState).renderer.components[maybeParentId]);
+
     if (!props.src) return null;
 
     /** STYLES */
     /* Non bulma styling */
     const generatedStyle = {
-        ...makePositionParams(props.position)
+        ...makePositionParams(props.position, parentComponent?.position)
     };
 
 

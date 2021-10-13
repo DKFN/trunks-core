@@ -4,7 +4,7 @@ class _Logger {
     }
 
     public debug(message: string, additionnal?: object){
-        if (window.TRUNKS.debugMode)
+        if (window.TRUNKS?.debugMode)
             console.log(this.formatMessage(message), JSON.stringify(additionnal));
     }
 

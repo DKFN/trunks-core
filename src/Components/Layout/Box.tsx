@@ -1,11 +1,16 @@
 import React from "react";
 import {makePositionParams, sendEvent} from "../componentHelpers";
 import {IComponentBaseProps} from "../compontentProps";
+import {useSelector} from "react-redux";
+import {IAppState} from "../../redux/store";
 
 export const Box = (props: IComponentBaseProps) => {
+    const maybeParentId = props.position?.parent;
+    const parentComponent: any = useSelector((state) => maybeParentId && (state as IAppState).renderer.components[maybeParentId]);
+
     /** Style */
     const generatedStyle = {
-        ...makePositionParams(props.position)
+        ...makePositionParams(props.position, parentComponent?.position)
     };
 
     /** Event Routing */

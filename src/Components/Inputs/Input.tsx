@@ -3,6 +3,8 @@ import {makePositionParams, sendEvent} from "../componentHelpers";
 import {makeInputClassNames} from "./componentInputHelpers";
 import {IComponentInputProps, IComponentInputStyleProps} from "./compontentInputProps";
 import classNames from "classnames";
+import {useSelector} from "react-redux";
+import {IAppState} from "../../redux/store";
 
 export interface IInputProps extends IComponentInputProps {
     isLoading?: boolean;
@@ -10,9 +12,12 @@ export interface IInputProps extends IComponentInputProps {
 }
 
 export const Input = (props: IInputProps) => {
+    const maybeParentId = props.position?.parent;
+    const parentComponent: any = useSelector((state) => maybeParentId && (state as IAppState).renderer.components[maybeParentId]);
+
     /** Style */
     const generatedStyle = {
-        ...makePositionParams(props.position)
+        ...makePositionParams(props.position, parentComponent?.position)
     };
 
     const classes = makeInputClassNames(props.styling);
@@ -25,6 +30,7 @@ export const Input = (props: IInputProps) => {
     const onClick = () => sendEvent("onClick", props.id, props.name);
     const onMouseEnter = () => sendEvent("onMouseEnter", props.id, props.name);
     const onFocus = () => sendEvent("onFocus", props.id, props.name);
+    const onBlur = () => sendEvent("onBlur", props.id, props.name);
     const onChange = (e: any) => {
         const value = e.target.value;
         sendEvent("onChange", props.id, props.name, value);
@@ -53,6 +59,7 @@ export const Input = (props: IInputProps) => {
             onClick={onClick}
             onKeyDown={onKeyDown}
             onFocus={onFocus}
+            onBlur={onBlur}
             onMouseEnter={onMouseEnter}
         />
     </div>;

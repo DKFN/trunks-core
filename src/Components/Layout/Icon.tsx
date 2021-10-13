@@ -4,17 +4,22 @@ import classNames from "classnames";
 import {makeInputClassNames} from "../Inputs/componentInputHelpers";
 import {makePositionParams, sendEvent} from "../componentHelpers";
 import _ from "lodash";
+import {useSelector} from "react-redux";
+import {IAppState} from "../../redux/store";
 
 interface IIConProps extends IComponentBaseProps {
     icon?: string;
 }
 
 export const Icon = (props: IIConProps) => {
+    const maybeParentId = props.position?.parent;
+    const parentComponent: any = useSelector((state) => maybeParentId && (state as IAppState).renderer.components[maybeParentId]);
+
     if (!props.icon) return null;
 
     /** Style */
     const generatedStyle = {
-        ...makePositionParams(props.position)
+        ...makePositionParams(props.position, parentComponent?.position)
     };
 
     const additionnalStyle = props.position?.height ? {

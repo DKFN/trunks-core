@@ -1,6 +1,8 @@
 import React from "react";
 import {IComponentInputProps, IComponentInputStyleProps} from "./compontentInputProps";
 import {makePositionParams, sendEvent} from "../componentHelpers";
+import {useSelector} from "react-redux";
+import {IAppState} from "../../redux/store";
 
 export interface ICheckboxProps extends IComponentInputProps {
     text?: string;
@@ -10,10 +12,13 @@ export interface ICheckboxProps extends IComponentInputProps {
 
 // TODO Finish the checkbox implementation
 export const Checkbox = (props: ICheckboxProps) => {
+    const maybeParentId = props.position?.parent;
+    const parentComponent: any = useSelector((state) => maybeParentId && (state as IAppState).renderer.components[maybeParentId]);
+
     /** STYLES */
     /* Non bulma styling */
     const generatedStyle = {
-        ...makePositionParams(props.position)
+        ...makePositionParams(props.position, parentComponent.position)
     };
 
     /** Event routing */

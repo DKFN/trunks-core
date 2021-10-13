@@ -8,7 +8,7 @@ export const ComponentRenderer = () => {
     const rendererState = useSelector((state) => (state as IAppState).renderer);
 
     const builtComponents = Object.values(rendererState.components).map((componentProps: any) => {
-        return <ComponentRouter key={"cr_" + componentProps.id}{...componentProps}/>
+        return <ComponentRouter key={"cr_" + componentProps.id} {...componentProps}/>
     });
 
     Logger.debug("Renderer state: " + JSON.stringify(rendererState));

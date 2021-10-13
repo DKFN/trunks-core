@@ -4,6 +4,8 @@ import {makePositionParams, sendEvent} from "../componentHelpers";
 import {makeInputClassNames} from "./componentInputHelpers";
 import classNames from "classnames";
 import {IComponentInputStyleProps} from "./compontentInputProps";
+import {useSelector} from "react-redux";
+import {IAppState} from "../../redux/store";
 
 export interface IProgressBarProps extends IComponentBaseProps {
     value?: string | number;
@@ -12,9 +14,12 @@ export interface IProgressBarProps extends IComponentBaseProps {
 }
 
 export const ProgressBar = (props: IProgressBarProps) => {
+    const maybeParentId = props.position?.parent;
+    const parentComponent: any = useSelector((state) => maybeParentId && (state as IAppState).renderer.components[maybeParentId]);
+
     /** Style */
     const generatedStyle = {
-        ...makePositionParams(props.position)
+        ...makePositionParams(props.position, parentComponent?.position)
     };
 
     const classes = makeInputClassNames(props.styling);

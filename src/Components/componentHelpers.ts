@@ -1,5 +1,7 @@
 import {IComponentBasePositioningProps} from "./compontentProps";
 import {Logger} from "../Logger";
+import store from "../redux/store";
+import _ from "lodash";
 
 const defaultPosition = {
     position: "absolute",
@@ -7,17 +9,31 @@ const defaultPosition = {
     left: 0
 }
 
-export const makePositionParams = (positionProps: IComponentBasePositioningProps | undefined): any => {
+export const makePositionParams = (positionProps: IComponentBasePositioningProps | undefined, parentPos?: IComponentBasePositioningProps): any => {
     if (!positionProps) return defaultPosition;
 
-    if (positionProps.positionType === "absolute")
-        return {
-            position: positionProps.positionType,
-            top: positionProps.posY,
-            left: positionProps.posX,
-            height: positionProps.height,
-            width: positionProps.width
-        }
+    if (positionProps.positionType === "absolute") {
+
+        Logger.log("ParentPos : " + JSON.stringify(parentPos));
+        const basePosParams = parentPos
+            ? {
+                    top: (parentPos!.posY as number) + (positionProps!.posY as number),
+                    left: (parentPos!.posX as number)  + (positionProps!.posX as number)
+                } : {
+                top: positionProps.posY,
+                left: positionProps.posX,
+            }
+            const a = _.merge(basePosParams, {
+                position: positionProps.positionType,
+                height: positionProps.height,
+                width: positionProps.width,
+                ...basePosParams
+            });
+
+        Logger.log("Rendering : " + JSON.stringify(a));
+        return a;
+    }
+
     Logger.error("Not implemented position type : " + positionProps.positionType, {positionProps});
 }
 

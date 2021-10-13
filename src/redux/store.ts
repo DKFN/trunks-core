@@ -4,7 +4,9 @@ import {rendererReducer} from "../Components/Renderer/rendererReducer";
 
 export interface IAppState {
     renderer: {
-        components: object[]
+        components: {
+            [k: string]: object
+        }
     }
 }
 const store = configureStore({

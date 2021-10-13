@@ -3,6 +3,7 @@ export interface IComponentBaseProps {
     component: string; // Component type
     name?: string;
     position?: IComponentBasePositioningProps;
+    hidden?: boolean;
 }
 
 export interface IComponentBasePositioningProps {
@@ -11,6 +12,7 @@ export interface IComponentBasePositioningProps {
     posY?: string | number;
     height?: string | number;
     width?: string | number;
+    parent?: string; // Parent of the element to make it relative to it
 }
 
 export interface IComponentStylingBaseProps {

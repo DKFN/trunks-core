@@ -12,6 +12,9 @@ import {Stylesheet} from "../Scripts/Stylesheet";
 import {Icon} from "../Layout/Icon";
 import {Image} from "../Layout/Image";
 import {Checkbox, ICheckboxProps} from "../Inputs/Checkbox";
+import {SimpleAlert} from "../Alerts/SimpleAlert";
+import {ConfirmCancelAlert} from "../Alerts/ConfirmCancelAlert";
+import {QueryAlert} from "../Alerts/QueryAlert";
 
 const ComponentRouter = (props: IComponentBaseProps) => {
     const type = props.component;
@@ -33,6 +36,12 @@ const ComponentRouter = (props: IComponentBaseProps) => {
             return <Icon {...props as any} />
         case "Image":
             return <Image {...props as any} />
+        case "SimpleAlert":
+            return <SimpleAlert {...props as any}/>
+        case "ConfirmAlert":
+            return <ConfirmCancelAlert {...props as any} />
+        case "QueryAlert":
+            return <QueryAlert {...props as any} />
         case "Javascript":
             return <Javascript {...props as IScriptProps}/>
         case "Stylesheet":

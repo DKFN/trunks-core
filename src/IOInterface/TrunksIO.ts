@@ -1,6 +1,6 @@
 import store, {AppDispatch} from "../redux/store";
 import {Logger} from "../Logger";
-import { addComponent, updateComponent } from "../Components/Renderer/rendererReducer";
+import {addComponent, deleteComponent, updateComponent} from "../Components/Renderer/rendererReducer";
 
 declare global {
     interface Window {
@@ -66,6 +66,7 @@ class TrunksIO {
             Logger.error("A component was passed to IOHook but is missing an id", {payload})
             return;
         }
+        this.dispatch(deleteComponent(payload));
     }
 
     public updateComponent(payload: string) {

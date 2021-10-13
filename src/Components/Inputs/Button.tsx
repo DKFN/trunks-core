@@ -3,6 +3,8 @@ import {makePositionParams, sendEvent} from "../componentHelpers";
 import classNames from "classnames";
 import {IComponentInputProps, IComponentInputStyleProps} from "./compontentInputProps";
 import {makeInputClassNames} from "./componentInputHelpers";
+import {useSelector} from "react-redux";
+import {IAppState} from "../../redux/store";
 
 
 export interface IButtonProps extends IComponentInputProps {
@@ -11,11 +13,13 @@ export interface IButtonProps extends IComponentInputProps {
 }
 
 export const Button = (props: IButtonProps) => {
+    const maybeParentId = props.position?.parent;
+    const parentComponent: any = useSelector((state) => maybeParentId && (state as IAppState).renderer.components[maybeParentId]);
 
     /** STYLES */
     /* Non bulma styling */
     const generatedStyle = {
-        ...makePositionParams(props.position)
+        ...makePositionParams(props.position, parentComponent?.position)
     };
 
     /* Bulma related styling */
