@@ -36,13 +36,13 @@ export const QueryAlert = (props: ISimpleAlertProps) => {
         <div className="modal-card" style={generatedStyle}>
             <header className="modal-card-head">
                 {props.title && <p className="modal-card-title">{props.title}</p>}
-                {props.cancellable && <button className="delete" aria-label="close" onClick={onClickCancel}></button>}
+                {props.cancellable === true && <button className="delete" aria-label="close" onClick={onClickCancel}></button>}
             </header>
             <section className="modal-card-body" style={textStyle}>
                 <input className="input" placeholder={props.text} onChange={onChange} onFocus={onFocus} onBlur={onBlur}/>
             </section>
             <footer className="modal-card-foot is-centered">
-                <button className="button" onClick={onClickCancel}>Cancel</button>
+                {props.cancellable === true && <button className="button" onClick={onClickCancel}>Cancel</button> }
                 <button className="button is-success is-centered" onClick={onClickOk}>Ok</button>
             </footer>
         </div>
